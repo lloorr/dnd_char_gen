@@ -1,0 +1,229 @@
+using System;
+using System.Dynamic;
+using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
+
+namespace DnD_char_scratch_file
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random raceNum = new Random();
+            int indexRace = raceNum.Next(0, 19);    //this variable is unneccesary but is a remnant of my attempt to use an array
+
+            Console.WriteLine(" \nWelcome to the DnD Character Generator");
+            Console.WriteLine("\nVersion 1.0");
+            Console.WriteLine("\n  B O R N  T O  D I E\n    WORLD IS A FUCK\n    I am trash man\n410,757,864,530 DEAD COPS");
+            Console.WriteLine("\n         uWu\n\n");
+
+            Console.Write("Enter your name: \n");
+            string userName = Console.ReadLine();
+
+            Console.Write("\n\nNice to meet you, " + userName + ". Now, enter your character's name:  ");
+            string charName = Console.ReadLine();
+            Console.WriteLine("\n" + charName + "'s randomly generated stats and background: \n");
+
+            /* string[] arrayRace = new[]
+                {
+                  "Aarakocra" ,
+                  "Dragon Born" ,
+                  "Hill Dwarf" ,
+                  "Mountain Dwarf" ,
+                  "High Elf" ,
+                  "Wood Elf",                    Set up this array but
+                  "Air Genasi" ,                 don't know how to make the
+                  "Earth Genasi",                random number that gets spit out above^^^^
+                  "Fire Genasi" ,                to be inputted as a location and then have it print
+                  "Water Genasi" ,               the race name that way. ie indexRace = 0, console prints "dragon born"
+                  "Gnome" ,                      The way I currently have it written is really inefficient but works.
+                  "Goliath" ,
+                  "Half-Elf" ,
+                  "Half-Orc" ,
+                  "Halfling" ,
+                  "Human", "Human", "Human",
+                  "Tiefling",
+                  }; */
+
+            Console.WriteLine();
+
+            if (indexRace == 0) { Console.WriteLine("Race: Aarakocra"); }
+            if (indexRace == 1) { Console.WriteLine("Race: Dragon Born"); }
+            if (indexRace == 2) { Console.WriteLine("Race: Hill Dwarf"); }
+            if (indexRace == 3) { Console.WriteLine("Race: Mountain Dwarf"); }
+            if (indexRace == 4) { Console.WriteLine("Race: High Elf"); }
+            if (indexRace == 5) { Console.WriteLine("Race: Wood Elf"); }
+            if (indexRace == 6) { Console.WriteLine("Race: Air Genasi"); }
+            if (indexRace == 7) { Console.WriteLine("Race: Earth Genasi"); }
+            if (indexRace == 8) { Console.WriteLine("Race: Fire Genasi"); }
+            if (indexRace == 9) { Console.WriteLine("Race: Water Genasi"); }
+            if (indexRace == 10) { Console.WriteLine("Race: Gnome"); }
+            if (indexRace == 11) { Console.WriteLine("Race: Goliath"); }
+            if (indexRace == 12) { Console.WriteLine("Race: Half-Elf"); }
+            if (indexRace == 13) { Console.WriteLine("Race: Half-Orc"); }
+            if (indexRace == 14) { Console.WriteLine("Race: Halfling"); }
+            if (indexRace == 15) { Console.WriteLine("Race: Human"); }
+            if (indexRace == 16) { Console.WriteLine("Race: Human"); }
+            if (indexRace == 17) { Console.WriteLine("Race: Human"); }
+            if (indexRace == 18) { Console.WriteLine("Race: Tiefling"); }
+
+            Random classNum = new Random();
+            int indexClass = classNum.Next(0, 12);
+
+            if (indexClass == 0) { Console.WriteLine("\nClass: Barbarian"); }
+            if (indexClass == 1) { Console.WriteLine("\nClass: Bard"); }
+            if (indexClass == 2) { Console.WriteLine("\nClass: Cleric"); }
+            if (indexClass == 3) { Console.WriteLine("\nClass: Druid"); }
+            if (indexClass == 4) { Console.WriteLine("\nClass: Fighter"); }
+            if (indexClass == 5) { Console.WriteLine("\nClass: Monk"); }
+            if (indexClass == 6) { Console.WriteLine("\nClass: Paladin"); }
+            if (indexClass == 7) { Console.WriteLine("\nClass: Ranger"); }
+            if (indexClass == 8) { Console.WriteLine("\nClass: Rogue"); }
+            if (indexClass == 9) { Console.WriteLine("\nClass: Sorceror"); }
+            if (indexClass == 10) { Console.WriteLine("\nClass: Warlock"); }
+            if (indexClass == 11) { Console.WriteLine("\nClass: Wizard"); }
+
+            Console.WriteLine("\n\nAbility Scores:\n");
+
+            Random ranStr = new Random();
+            int strNum = ranStr.Next(3, 16);
+            Console.WriteLine("Strength:      " + strNum);
+
+            Random ranDex = new Random();
+            int dexNum = ranDex.Next(3, 16);
+            Console.WriteLine("Dexterity:     " + dexNum);
+
+            Random ranCon = new Random();
+            int conNum = ranCon.Next(3, 16);
+            Console.WriteLine("Constitution:  " + conNum);
+
+            Random ranInt = new Random();
+            int intNum = ranInt.Next(3, 16);
+            Console.WriteLine("Intelligence:  " + intNum);
+
+            Random ranWis = new Random();
+            int wisNum = ranWis.Next(3, 16);
+            Console.WriteLine("Wisdom:        " + wisNum);
+
+            Random ranCha = new Random();
+            int chaNum = ranCha.Next(3, 16);
+            Console.WriteLine("Charisma:      " + chaNum + "\n");
+
+            Console.WriteLine("\nBackground Details: \n");
+            Random ranBack = new Random();
+            int BackNum = ranBack.Next(0, 7);
+            int BackNum2 = BackNum;
+                
+            if (BackNum == 0)
+            {
+                bool isAcolyte = true;
+                Console.WriteLine("Background: Acolyte. " +
+                    "\nYou have spent your life in the service of a temple to a specific god or pantheon of gods. " +
+                    "\nYou act as an intermediary between the realm of the holy and the mortal world, performing sacred rites and offering sacrifices in order to conduct worshipers into the presence of the divine. " +
+                    "\nYou are not necessarily a cleric—performing sacred rites is not the same thing as channeling divine power. ");
+                Console.WriteLine("\nSkill Proficiences: Insight, Religion");
+                Console.WriteLine("\nBackground Feature: \n'Shelter of the Faithful': As an acolyte, you command the respect of those who share your faith." +
+                    "\nYou can perfomr the religious ceremonies of your deity, and yourself and your companions can receive healing and care at a temple of your faith." +
+                    "\nThose who share your faith will support you and your modest lifestyle.");
+
+            }
+            if (BackNum == 1)
+            {
+                bool isCriminal = true;
+                Console.WriteLine("Background: Criminal / Spy." +
+                    "\nYou are an experienced criminal with a history of breaking the law. " +
+                    "\nYou have spent a lot of time among other criminals and still have contacts within the criminal underworld. " +
+                    "\nYou’re far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society.\n"
+                    );
+            }
+            if (BackNum == 2)
+            {
+                bool isFolk = true;
+                Console.WriteLine("Background: Folk Hero." +
+                    "\nYou come from a humble social rank, but you are destined for so much more. " +
+                    "\nAlready the people of your home village regard you as their champion, and your destiny calls you to stand against the tyrants and monsters that threaten the common folk everywhere.\n");
+
+            }
+            if (BackNum == 3)
+            {
+                bool isHaunted = true;
+                Console.WriteLine("Background: Haunted One. " +
+                    "\nYou are haunted by something so terrible that you dare not speak of it. " +
+                    "\nYou’ve tried to bury it and run away from it, to no avail." +
+                    "\nWhatever this thing is that haunts you can’t be slain with a sword or banished with a spell. " +
+                    "\nIt might come to you as a shadow on the wall, a bloodcurdling nightmare, a memory that refuses to die, or a demonic whisper in the dark. " +
+                    "\nThe burden has taken its toll, isolating you from most people and making you question your sanity. " +
+                    "\nYou must find a way to overcome it before it destroys you.\n"
+                    );
+            }
+            if (BackNum == 4)
+            {
+                bool isNoble = true;
+                Console.WriteLine("Background: Noble.  " +
+                    "\nYou understand wealth, power, and privilege. " +
+                    "\nYou carry a noble title, and your family owns land, collects taxes, and wields significant political influence. " +
+                    "\nYou might be a pampered aristocrat unfamiliar with work or discomfort, a former merchant just elevated to the nobility, or a disinherited scoundrel with a disproportionate sense of entitlement. " +
+                    "\nOr you could be an honest, hard-working landowner who cares deeply about the people who live and work on your land, keenly aware of your responsibility to them.\n");
+            }
+            if (BackNum == 5)
+            {
+                bool isSage = true;
+                Console.WriteLine("Background: Sage.  " +
+                    "\nYou spent years learning the lore of the multiverse. " +
+                    "\nYou scoured manuscripts, studied scrolls, and listened to the greatest experts on the subjects that interest you. " +
+                    "\nYour efforts have made you a master in your fields of study.\n");
+            }
+            if (BackNum == 6)
+            {
+                bool isSoldier = true;
+                Console.WriteLine("Background: Soldier.  " +
+                    "\nWar has been your life for as long as you care to remember." +
+                    "\nYou trained as a youth, studied the use of weapons and armor, and learned basic survival techniques--including how to stay alive on the battlefield." +
+                    "\nYou might have been part of a standing national army or a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.");
+            }
+
+            Console.WriteLine("\n\nCharacteristics:  \n");
+            Console.WriteLine("Personality Traits: ");
+
+            /*  if (BackNum == 0)
+                {
+                Random acoPTRoll = new Random();
+                int acoPT = acoPTRoll.Next(1, 9);
+                if (acoPT == 1)
+                {
+                    Console.WriteLine("I idolize a particular hero of my faith, and constantly refer to that person's deeds and example.")
+                }
+                if (acoPT == 2)
+                {
+                    Console.WriteLine("I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.")
+                }
+                if (acoPT == 3)
+                {
+                    Console.WriteLine("I see omens in every event and action. The gods try to speak to us, we just need to listen.")
+                }
+                if (acoPT == 4)
+                {
+                    Console.WriteLine("cum and poop")
+                };
+                Random acoIDRoll = new Random();
+                int acoID = acoIDRoll.Next(1, 7);
+                if (acoID == 1) 
+                {
+                   
+                }                                       //Not sure why this section isn't working. 
+                                                        //tried it with semicolons after each 'if' statement and without.
+                                                        //visual studio says both are wrong and when I do one it suggests the other.
+
+            
+
+            }
+            if (BackNum == 1) 
+            {
+                Random acoPTRoll = new Random();
+                int acoPT = acoPTRoll.Next(1, 9);  */
+            }
+
+        
+    }
+}    
+
