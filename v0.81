@@ -1,0 +1,883 @@
+using System;
+using System.Dynamic;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+
+namespace DnD_char_scratch_file
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /* bool isAcolyte = false;
+             bool isCriminal = false;
+             bool isFolk = false;
+             bool isHaunted = false;
+             bool isNoble = false;
+             bool isSage = false;
+             bool isSoldier = false; */
+
+
+            Random raceNum = new Random();
+            int indexRace = raceNum.Next(0, 16);    //this variable is unneccesary but is a remnant of my attempt to use an array
+
+            Console.WriteLine(" \nWelcome to the DnD Character Generator");
+            Console.WriteLine("\nVersion 0.8");
+            Console.WriteLine("\n  B O R N  T O  D I E\n    WORLD IS A FUCK\n    I am trash man\n410,757,864,530 DEAD COPS");
+            Console.WriteLine("\n         uWu\n\n");
+
+            Console.WriteLine("PLEASE NOTE: Due to text-wrap, this program is most easily read in FULL SCREEN.\n");
+
+
+            Console.Write("\n\nEnter your character's name:  ");
+            string charName = Console.ReadLine();
+            Console.WriteLine("\n ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~\n < " + charName + "'s randomly generated stats and background  >\n ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~\n\n");
+
+            /* string[] arrayRace = new[]
+                {
+                  "Aarakocra" ,
+                  "Dragon Born" ,
+                  "Hill Dwarf" ,
+                  "Mountain Dwarf" ,
+                  "High Elf" ,
+                  "Wood Elf",                    Set up this array but
+                  "Air Genasi" ,                 don't know how to make the
+                  "Earth Genasi",                random number that gets spit out above^^^^
+                  "Fire Genasi" ,                to be inputted as a location and then have it print
+                  "Water Genasi" ,               the race name that way. ie indexRace = 0, console prints "dragon born"
+                  "Gnome" ,                      The way I currently have it written is really inefficient but works.
+                  "Goliath" ,
+                  "Half-Elf" ,
+                  "Half-Orc" ,
+                  "Halfling" ,
+                  "Human", "Human", "Human",
+                  "Tiefling",
+                  }; */
+
+            Console.WriteLine();
+
+            if (indexRace == 0) { Console.WriteLine("**Race: Aarakocra"); }
+            if (indexRace == 1) { Console.WriteLine("**Race: Dragon Born"); }
+            if (indexRace == 2) { Console.WriteLine("**Race: Dwarf"); }
+            if (indexRace == 3) { Console.WriteLine("**Race: Dwarf"); }
+            if (indexRace == 4) { Console.WriteLine("**Race: High Elf"); }
+            if (indexRace == 5) { Console.WriteLine("**Race: Wood Elf"); }
+            //Genasi code separate. Below
+            if (indexRace == 7) { Console.WriteLine("**Race: Gnome"); }
+            if (indexRace == 8) { Console.WriteLine("**Race: Goliath"); }
+            if (indexRace == 9) { Console.WriteLine("**Race: Half-Elf"); }
+            if (indexRace == 10) { Console.WriteLine("**Race: Half-Orc"); }
+            if (indexRace == 11) { Console.WriteLine("**Race: Halfling"); }
+            if (indexRace == 12) { Console.WriteLine("**Race: Human"); }
+            if (indexRace == 13) { Console.WriteLine("**Race: Human"); }
+            if (indexRace == 14) { Console.WriteLine("**Race: Human"); }
+            if (indexRace == 15) { Console.WriteLine("**Race: Tiefling"); }
+
+            if (indexRace == 6)
+            {
+                Random genRan = new Random();
+                int genNum = genRan.Next(0, 4);
+                if (genNum == 0) { Console.WriteLine("**Race: Air Genasi"); }
+                if (genNum == 1) { Console.WriteLine("**Race: Water Genasi"); }
+                if (genNum == 2) { Console.WriteLine("**Race: Earth Genasi"); }
+                if (genNum == 3) { Console.WriteLine("**Race: Fire Genasi"); }
+            }
+            
+
+
+
+            Random classNum = new Random();
+            int indexClass = classNum.Next(0, 12);
+
+            if (indexClass == 0) { Console.WriteLine("\n**Class: Barbarian"); }
+            if (indexClass == 1) { Console.WriteLine("\n**Class: Bard"); }
+            if (indexClass == 2) { Console.WriteLine("\n**Class: Cleric"); }
+            if (indexClass == 3) { Console.WriteLine("\n**Class: Druid"); }
+            if (indexClass == 4) { Console.WriteLine("\n**Class: Fighter"); }
+            if (indexClass == 5) { Console.WriteLine("\n**Class: Monk"); }
+            if (indexClass == 6) { Console.WriteLine("\n**Class: Paladin"); }
+            if (indexClass == 7) { Console.WriteLine("\n**Class: Ranger"); }
+            if (indexClass == 8) { Console.WriteLine("\n**Class: Rogue"); }
+            if (indexClass == 9) { Console.WriteLine("\n**Class: Sorceror"); }
+            if (indexClass == 10) { Console.WriteLine("\n**Class: Warlock"); }
+            if (indexClass == 11) { Console.WriteLine("\n**Class: Wizard"); }
+
+            Console.WriteLine("\n\n ------------------\n | Ability Scores |\n ------------------\n");
+
+
+            if (indexRace == 0) 
+            {
+                int strMod = 0; int dexMod = 2; int conMod = 0; int intMod = 0; int wisMod = 1; int chaMod = 0; 
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " +( rawchaNum + chaMod)+"\n");
+            }//aaroasdkfjasd
+            if (indexRace == 1)
+            {
+                int strMod = 2; int dexMod = 0; int conMod = 0; int intMod = 0; int wisMod = 0; int chaMod = 1;
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " + (rawchaNum + chaMod) + "\n");
+            }//dragonborn
+            if (indexRace == (2 ^ 3))
+            {
+                int strMod = 0; int dexMod = 0; int conMod = 2; int intMod = 0; int wisMod = 0; int chaMod = 0;
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " + (rawchaNum + chaMod) + "\n");
+            }//dwarf
+            if (indexRace == (4 ^ 5) )
+            {
+                int strMod = 0; int dexMod = 2; int conMod = 0; int intMod = 0; int wisMod = 0; int chaMod = 0;
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " + (rawchaNum + chaMod) + "\n");
+            }//elf
+            if (indexRace == 6)
+            {
+                int strMod = 0; int dexMod = 0; int conMod = 2; int intMod = 0; int wisMod = 0; int chaMod = 0;
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " + (rawchaNum + chaMod) + "\n");
+            }//genasi
+            if (indexRace == 7)
+            {
+                int strMod = 0; int dexMod = 0; int conMod = 0; int intMod = 2; int wisMod = 0; int chaMod = 0;
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " + (rawchaNum + chaMod) + "\n");
+            }//gnome
+            if (indexRace == 8)
+            {
+                int strMod = 2; int dexMod = 0; int conMod = 1; int intMod = 0; int wisMod = 0; int chaMod = 0;
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " + (rawchaNum + chaMod) + "\n");
+            }//goliath
+            if (indexRace == 9)
+            {
+                int strMod = 0; int dexMod = 0; int conMod = 1; int intMod = 1; int wisMod = 0; int chaMod = 2;
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " + (rawchaNum + chaMod) + "\n");
+            }//halfelf
+            if (indexRace == 10)
+            {
+                int strMod = 2; int dexMod = 0; int conMod = 1; int intMod = 0; int wisMod = 0; int chaMod = 0;
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " + (rawchaNum + chaMod) + "\n");
+            }//halforc
+            if (indexRace == 11)
+            {
+                int strMod = 0; int dexMod = 2; int conMod = 0; int intMod = 0; int wisMod = 0; int chaMod = 0;
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " + (rawchaNum + chaMod) + "\n");
+            }//halfling
+            if (indexRace == (12 ^ 13 ^ 14))
+            {
+                int strMod = 1; int dexMod = 1; int conMod = 1; int intMod = 1; int wisMod = 1; int chaMod = 1;
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " + (rawchaNum + chaMod) + "\n");
+            }//human
+            if (indexRace == 15)
+            {
+                int strMod = 0; int dexMod = 0; int conMod = 0; int intMod = 1; int wisMod = 0; int chaMod = 2;
+                Random ranStr = new Random();
+                int rawstrNum = ranStr.Next(3, 16);
+                Console.WriteLine("Strength:      " + (rawstrNum + strMod));
+                Random ranDex = new Random();
+                int rawdexNum = ranDex.Next(3, 16);
+                Console.WriteLine("Dexterity:     " + (rawdexNum + dexMod));
+                Random ranCon = new Random();
+                int rawconNum = ranCon.Next(3, 16);
+                Console.WriteLine("Constitution:  " + (rawconNum + conMod));
+                Random ranInt = new Random();
+                int rawintNum = ranInt.Next(3, 16);
+                Console.WriteLine("Intelligence:  " + (rawintNum + intMod));
+                Random ranWis = new Random();
+                int rawwisNum = ranWis.Next(3, 16);
+                Console.WriteLine("Wisdom:        " + (rawwisNum + wisMod));
+                Random ranCha = new Random();
+                int rawchaNum = ranCha.Next(3, 16);
+                Console.WriteLine("Charisma:      " + (rawchaNum + chaMod));
+            }//tiefling
+
+            
+
+            Console.WriteLine("\n ----------------------\n | Background Details | \n ----------------------\n");
+            Random ranBack = new Random();
+            int BackNum = ranBack.Next(0, 7);
+            int BackNum2 = BackNum;
+
+
+            if (BackNum == 0)
+            {
+
+                Console.WriteLine("**Background: Acolyte. " +
+                    "\nYou have spent your life in the service of a temple to a specific god or pantheon of gods. " +
+                    "\nYou act as an intermediary between the realm of the holy and the mortal world, performing sacred rites and offering sacrifices in order to conduct worshipers into the presence of the divine. " +
+                    "\nYou are not necessarily a cleric—performing sacred rites is not the same thing as channeling divine power. ");
+                Console.WriteLine("\n**Skill Proficiences: Insight, Religion");
+                Console.WriteLine("**Language Proficiences: Choose any two, other than Common.");
+                Console.WriteLine("\n**Background Feature: \n'Shelter of the Faithful': As an acolyte, you command the respect of those who share your faith." +
+                    "\nYou can perform the religious ceremonies of your deity, and yourself and your companions can receive healing and care at a temple of your faith." +
+                    "\nThose who share your faith will support you and your modest lifestyle.");
+            }
+
+            if (BackNum == 1)
+            {
+
+                Console.WriteLine("**Background: Criminal / Spy." +
+                    "\nYou are an experienced criminal with a history of breaking the law. " +
+                    "\nYou have spent a lot of time among other criminals and still have contacts within the criminal underworld. " +
+                    "\nYou’re far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society.");
+                Console.WriteLine("\n**Skill Proficiencies: Deception, Stealth");
+                Console.WriteLine("**Tool Proficiencies: Thieves' tools");
+                Console.WriteLine("\nBackground Feature: \n'Criminal Contact': You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. " +
+                    "\nYou know how to get messages to and from your contact, even over great distances; specifically, you know the local messengers, corrupt caravan masters, and seedy sailors who can deliver messages for you.");
+                //add in random roll for gaming set (same as noble)
+            }
+            if (BackNum == 2)
+            {
+
+                Console.WriteLine("**Background: Folk Hero." +
+                    "\nYou come from a humble social rank, but you are destined for so much more. " +
+                    "\nAlready the people of your home village regard you as their champion, and your destiny calls you to stand against the tyrants and monsters that threaten the common folk everywhere.\n");
+                Console.WriteLine("\n**Skill Proficiencies: Animal Handling, Survival");
+                Console.WriteLine("**Tool Proficiencies: Vehicles (Land)");
+                Console.WriteLine("\nBackground Feature: \n'Rustic Hospitality': Since you come from the ranks of common folk, you fit in amongst them with ease. \n" +
+                    "You can find a place to hide, rest, or recuperate amongst commoners unless you have shown yourself to be a danger to them.\n" +
+                    "They will shield you from the law or anyone else looking for you, though they will not risk their lives for you.");
+                //add in random roll for artisan's tool
+
+            }
+            if (BackNum == 3)
+            {
+
+                Console.WriteLine("**Background: Haunted One. " +
+                    "\nYou are haunted by something so terrible that you dare not speak of it. " +
+                    "\nYou’ve tried to bury it and run away from it, to no avail." +
+                    "\nWhatever this thing is that haunts you can’t be slain with a sword or banished with a spell. " +
+                    "\nIt might come to you as a shadow on the wall, a bloodcurdling nightmare, a memory that refuses to die, or a demonic whisper in the dark. " +
+                    "\nThe burden has taken its toll, isolating you from most people and making you question your sanity. " +
+                    "\nYou must find a way to overcome it before it destroys you.\n"
+                    );
+                Console.WriteLine("\n**Skill Proficiences: Investigation, Survival"); //add in random generation for any 2 of Arcana Investigation Religion Survival
+                Console.WriteLine("**Languages: Deep Speech"); //add in random generation for an Exotic Language (Abyssal, Celestial, Deep Speech, Draconic, Infernal, Primordial, Sylvan, Undercommon)
+                Console.WriteLine("\nBackground Feature: \n'Heart of Darkness': Those who look into your eyes can see that you have faced unimaginable horror." +
+                    "\nThough they may fear you, commoners will extend to you every courtesy and do their utmost to help you." +
+                    "\nUnless you have shown yourself to be a danger to them, they may even take up arms to fight alongside you.");
+            }
+            if (BackNum == 4)
+            {
+
+                Console.WriteLine("**Background: Noble.  " +
+                    "\nYou understand wealth, power, and privilege. " +
+                    "\nYou carry a noble title, and your family owns land, collects taxes, and wields significant political influence. " +
+                    "\nYou might be a pampered aristocrat unfamiliar with work or discomfort, a former merchant just elevated to the nobility, or a disinherited scoundrel with a disproportionate sense of entitlement. " +
+                    "\nOr you could be an honest, hard-working landowner who cares deeply about the people who live and work on your land, keenly aware of your responsibility to them.\n");
+                //add in random generation of family colors / coat of arms / heirloom (ring staff circlet etc)
+                Console.WriteLine("\n**Skill Proficiencies: History, Persusasion");
+                Console.WriteLine("**Tool Proficiencies: "); //add in random generation of gaming set (use same as Criminal)
+                Console.WriteLine("**Languages: Choose any one, other than Common.");
+                Console.WriteLine("\nBackground Feature:\n'Position of Privilege': Thanks to your noble birth, people are inclined to think the best of you. \nYou are welcome in high society, and people assume you have the right to be wherever you are. \nYou can secure an audience with a local noble if you need to.");
+            }
+            if (BackNum == 5)
+            {
+
+                Console.WriteLine("Background: Soldier.  " +
+                    "\nWar has been your life for as long as you care to remember." +
+                    "\nYou trained as a youth, studied the use of weapons and armor, and learned basic survival techniques--including how to stay alive on the battlefield." +
+                    "\nYou might have been part of a standing national army or a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.");
+                Console.WriteLine("\n**Skill Proficiencies: Athletics, Intimidation");
+                Console.WriteLine("**Tool Proficiencies: Vehicles (Land)");
+                //add in random generation of gaming set
+                Console.WriteLine("\nBackground Feature:\n'Military Rank': You have a military rank from your career as a soldier." +
+                    "\nSoldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if you outrank them." +
+                    "\nYou can invoke your rank to exert influence over other soldiers and requisition simple equipment or horses for temporary use." +
+                    "\nYou can also usually gain access to friendly military encampents and fortresses where your rank is recognized.");
+            }
+            if (BackNum == 6)
+            {
+
+                Console.WriteLine("**Background: Sage.  " +
+                    "\nYou spent years learning the lore of the multiverse. " +
+                    "\nYou scoured manuscripts, studied scrolls, and listened to the greatest experts on the subjects that interest you. " +
+                    "\nYour efforts have made you a master in your fields of study.\n");
+                Console.WriteLine("\n**Skill Proficiencies: Arcana, History");
+                Console.WriteLine("**Languages: Choose any two, other than Common.");
+                Console.WriteLine("\nBackground Feature:\n'Researcher': When you attempt to learn or recall a piece of lore, if you do not know that information, you often know where and from whom you can obtain it. " +
+                    "\nUsually this information comes from a library, scriptorium, university, or a sage or other learned person or creature.");
+            }
+            
+            Console.WriteLine("\n\n -------------------\n | Characteristics |  \n -------------------\n");
+            Console.WriteLine("\n**Personality Traits: \n");
+
+            if (BackNum == 0)                                   //Personality Traits 1 Acolyte
+            {
+                Random acoPTRoll = new Random();
+                int acoPT = acoPTRoll.Next(1, 9);
+                if (acoPT == 1) { Console.WriteLine(charName + " idolizes a particular hero of their faith, and constantly refers to that person's deeds and example.\n"); }
+                if (acoPT == 2) { Console.WriteLine(charName + " can find common ground between the fiercest enemies, empathizing with them and always working toward peace.\n"); }
+                if (acoPT == 3) { Console.WriteLine(charName + " sees omens in every event and action. The gods try to speak to us, we just need to listen.\n"); }
+                if (acoPT == 4) { Console.WriteLine("Nothing can shake " + charName + "'s optimsitic attitude.\n"); }
+                if (acoPT == 5) { Console.WriteLine(charName + " quotes (or misquotes) sacred texts and proverbs in nearly every situation.\n"); }
+                if (acoPT == 6) { Console.WriteLine(charName + " is tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods.\n"); }
+                if (acoPT == 7) { Console.WriteLine(charName + " has enjoyed fine food, drink, and high society among their temple's elite. Consequently, rough living grates on " + charName + ".\n"); }
+                if (acoPT == 8) { Console.WriteLine(charName + " has spent so long in the temple (or other religious institution / practice) that they have very little practical experience dealing with people in the 'real' world.\n"); }
+
+                Random acoPTRoll2 = new Random();               //Personality Traits 2 Acolyte
+                int acoPT2 = acoPTRoll2.Next(1, 9);
+                if (acoPT2 == 1) { Console.WriteLine(charName + " idolizes a particular hero of their faith, and constantly refers to that person's deeds and example."); }
+                if (acoPT2 == 2) { Console.WriteLine(charName + " can find common ground between the fiercest enemies, empathizing with them and always working toward peace."); }
+                if (acoPT2 == 3) { Console.WriteLine(charName + " sees omens in every event and action. The gods try to speak to us, we just need to listen."); }
+                if (acoPT2 == 4) { Console.WriteLine("Nothing can shake " + charName + "'s optimsitic attitude."); }
+                if (acoPT2 == 5) { Console.WriteLine(charName + " quotes (or misquotes) sacred texts and proverbs in nearly every situation."); }
+                if (acoPT2 == 6) { Console.WriteLine(charName + " is tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods."); }
+                if (acoPT2 == 7) { Console.WriteLine(charName + " has enjoyed fine food, drink, and high society among their temple's elite. Consequently, rough living grates on " + charName + "."); }
+                if (acoPT2 == 8) { Console.WriteLine(charName + " has spent so long in the temple (or other religious institution / practice) that they have very little practical experience dealing with people in the 'real' world."); }
+
+                Console.WriteLine("\n**Ideals (Allignment):\n");          //Ideals Acolyte
+                Random acoIDRoll = new Random();
+                int acoID = acoIDRoll.Next(1, 7);
+                if (acoID == 1) { Console.WriteLine("Tradition (Lawful). The ancient Traditions of worship and sacrifice *must* be preserved and upheld."); }
+                if (acoID == 2) { Console.WriteLine("Charity (Good). " + charName + " will always try to help those in need, no matter the personal cost."); }
+                if (acoID == 3) { Console.WriteLine("Change (Chaotic). We must help to bring about the changes the gods are constantly working in the world."); }
+                if (acoID == 4) { Console.WriteLine("Power (Lawful). " + charName + " hopes to one day rise to the top of their faith's religious hierarchy."); }
+                if (acoID == 5) { Console.WriteLine("Faith (Lawful). " + charName + "trusts that their deity will guide their actions." + charName + "has faith that if they work hard, things will go well."); }
+                if (acoID == 6) { Console.WriteLine("Aspiration (Any). " + charName + " seeks to prove themself worhty of their god's favor by matching their actions with their faith's teachings."); }
+
+
+                Console.WriteLine("\n**Bonds:\n");                        //Bonds Acolyte
+                Random acoBondRoll = new Random();
+                int acoBond = acoBondRoll.Next(1, 7);
+                if (acoBond == 1) { Console.WriteLine(charName + " would die to recover an ancient relic of their faith that was lost long ago."); }
+                if (acoBond == 2) { Console.WriteLine(charName + " will someday get revenge on the corrupt temple hierarchy / faith leader who branded them a heretic."); }
+                if (acoBond == 3) { Console.WriteLine(charName + " owes their life to the priest who took them in when their parents died."); }
+                if (acoBond == 4) { Console.WriteLine("Everything " + charName + " does is for the common people."); }
+                if (acoBond == 5) { Console.WriteLine(charName + " will do anything to protect the temple / faith institution where they served."); }
+                if (acoBond == 6) { Console.WriteLine(charName + " seeks to preserve a sacred text which their enemies within their faith consider to be heretical and want destroyed."); }
+
+                Console.WriteLine("\n**Flaws: \n");                       //Flaws Acolyte
+                Random acoFlawRoll = new Random();
+                int acoFlaw = acoFlawRoll.Next(1, 7);
+                if (acoFlaw == 1) { Console.WriteLine(charName + " judges others harshly, and themself even more severely."); }
+                if (acoFlaw == 2) { Console.WriteLine(charName + " puts too much trust in those who wield power with their faith's / temple's hierarchy."); }
+                if (acoFlaw == 3) { Console.WriteLine(charName + "'s piety sometimes leads them to blindly trust those who profess faith in their same god(s)."); }
+                if (acoFlaw == 4) { Console.WriteLine(charName + " is inflexible in their thinking."); }
+                if (acoFlaw == 5) { Console.WriteLine(charName + " is suspicious of strangers and expects the worst of them."); }
+                if (acoFlaw == 6) { Console.WriteLine("Once " + charName + " picks a goal, they become obsessed with it to the detriment of everything else in their life."); }
+
+
+
+
+            }
+            if (BackNum == 1)
+            {
+                Random crimPTRoll = new Random();                        //Personality Traits Criminal
+                int crimPT = crimPTRoll.Next(1, 9);
+                if (crimPT == 1) { Console.WriteLine(charName + "always has a plan for what to do when things go wrong.\n"); }
+                if (crimPT == 2) { Console.WriteLine(charName + "is always calm, no matter what the situation. They never lose their cool or let emotions control them.\n"); }
+                if (crimPT == 3) { Console.WriteLine("The first thing " + charName + " does in a new place is note the locations of everything that could fetch a profit.\n"); }
+                if (crimPT == 4) { Console.WriteLine(charName + " would always rather make a new friend than a new enemy.\n"); }
+                if (crimPT == 5) { Console.WriteLine(charName + " is incredibly slow to trust. To " + charName + ", those who seem the fairest often have the most to hide.\n"); }
+                if (crimPT == 6) { Console.WriteLine(charName + " doesn't pay attention to the risks in a situation. Never tell them the odds.\n"); }
+                if (crimPT == 7) { Console.WriteLine("The best way to get " + charName + " to do something is to tell them they can't do it.\n"); }
+                if (crimPT == 8) { Console.WriteLine("The only thing bigger than " + charName + "'s ego is their mirror. Modesty is not " + charName + "'s strong suit.\n"); }
+
+                Random crimPTRoll2 = new Random();                      //Personality Traits 2 Criminal
+                int crimPT2 = crimPTRoll2.Next(1, 9);
+                if (crimPT2 == 1) { Console.WriteLine(charName + "always has a plan for what to do when things go wrong."); }
+                if (crimPT2 == 2) { Console.WriteLine(charName + " is always calm, no matter what the situation. They never lose their cool or let emotions control them."); }
+                if (crimPT2 == 3) { Console.WriteLine("The first thing " + charName + " does in a new place is note the locations of everything that could fetch a profit."); }
+                if (crimPT2 == 4) { Console.WriteLine(charName + " would always rather make a new friend than a new enemy."); }
+                if (crimPT2 == 5) { Console.WriteLine(charName + " is incredibly slow to trust. To " + charName + ", those who seem the fairest often have the most to hide."); }
+                if (crimPT2 == 6) { Console.WriteLine(charName + " doesn't pay attention to the risks in a situation. Never tell them the odds."); }
+                if (crimPT2 == 7) { Console.WriteLine("The best way to get " + charName + " to do something is to tell them they can't do it."); }
+                if (crimPT2 == 8) { Console.WriteLine("The only thing bigger than " + charName + "'s ego is their mirror. Modesty is not " + charName + "'s strong suit."); }
+
+                Console.WriteLine("\n**Ideals (Allignment):\n");          //Ideals Criminal
+                Random crimIDRoll = new Random();
+                int crimID = crimIDRoll.Next(1, 7);
+                if (crimID == 1) { Console.WriteLine("Honor (Lawful). " + charName + " doesn't steal from others in 'the business'. Even theives have to have a code."); }
+                if (crimID == 2) { Console.WriteLine("Freedom (Chaotic). Chains are meant to be broken, as are those who would forge them."); }
+                if (crimID == 3) { Console.WriteLine("Charity (Good). " + charName + " steals from the wealthy so that they can help those who really need it."); }
+                if (crimID == 4) { Console.WriteLine("Greed (Evil). " + charName + " will do whatever it takes to become wealthy."); }
+                if (crimID == 5) { Console.WriteLine("People (Neutral). " + charName + " is loyal to their friends, not to any 'gods' or 'morals'. Everything besides their friendships can go to hell."); }
+                if (crimID == 6) { Console.WriteLine("Redemption (Good). There's a spark of goodness in everyone."); }
+
+                Console.WriteLine("\n**Bonds:\n");                        //Bonds Criminal
+                Random crimBondRoll = new Random();
+                int crimBond = crimBondRoll.Next(1, 7);
+                if (crimBond == 1) { Console.WriteLine(charName + " is trying to pay off an old debt they owe to a generous benefactor."); }
+                if (crimBond == 2) { Console.WriteLine(charName + "'s ill-gotten gains all go to support their family."); }
+                if (crimBond == 3) { Console.WriteLine("Something important was taken from " + charName + ", and they aim to steal it back."); }
+                if (crimBond == 4) { Console.WriteLine(charName + " has one goal: to become the greatest thief who ever lived!"); }
+                if (crimBond == 5) { Console.WriteLine(charName + " is guilty of a heinous crime. Everywhere they go, they seek some redemption for their past."); }
+                if (crimBond == 6) { Console.WriteLine("Someone " + charName + " loved died because of a mistake they made. That will never happen again."); }
+
+                Console.WriteLine("\n**Flaws: \n");                       //Flaws Criminal
+                Random crimFlawRoll = new Random();
+                int crimFlaw = crimFlawRoll.Next(1, 7);
+                if (crimFlaw == 1) { Console.WriteLine("When " + charName + " sees something valuable, they can't think about anything other than how they could steal it."); }
+                if (crimFlaw == 2) { Console.WriteLine("When faced with a choice between money and friends, " + charName + " is inclined to choose the money."); }
+                if (crimFlaw == 3) { Console.WriteLine("If there's a plan, " + charName + " will forget it. If they don't forget it, they'll probably still just ignore it."); }
+                if (crimFlaw == 4) { Console.WriteLine(charName + " has a 'tell' which reveals when they are lying."); }
+                if (crimFlaw == 5) { Console.WriteLine(charName + " runs and hides when things look bad."); }
+                if (crimFlaw == 6) { Console.WriteLine("An innocent person sits rotting in a prison cell for a crime that " + charName + " committed."); }
+            }
+            if (BackNum == 2)
+            {
+                Random folkPTRoll = new Random();                        //Personality Traits Folk Hero
+                int folkPT = folkPTRoll.Next(1, 9);
+                if (folkPT == 1) { Console.WriteLine(charName + " judges people by their actions, not their words.\n"); }
+                if (folkPT == 2) { Console.WriteLine("If someone is in trouble, " + charName + " is always ready to lend help.\n"); }
+                if (folkPT == 3) { Console.WriteLine("When " + charName + " sets their mind to something, they follow through no matter what gets in their way.\n"); }
+                if (folkPT == 4) { Console.WriteLine(charName + " has a strong sense of fairness and always tries to find the equitable solution to arguments.\n"); }
+                if (folkPT == 5) { Console.WriteLine(charName + " is confident in their own abilities and tries to instill confidence in others.\n"); }
+                if (folkPT == 6) { Console.WriteLine("Thinking is for other people, " + charName + " prefers action.\n"); }
+                if (folkPT == 7) { Console.WriteLine(charName + " tries to sound smarter than they are by using big words and fancy idioms, but usually uses them incorrectly.\n"); }
+                if (folkPT == 8) { Console.WriteLine(charName + " gets bored easily, they just want to get on with fulfilling their destiny!\n"); }
+
+                Random folkPTRoll2 = new Random();                      //Personality Traits 2 Folk Hero
+                int folkPT2 = folkPTRoll2.Next(1, 9);
+                if (folkPT2 == 1) { Console.WriteLine(charName + " judges people by their actions, not their words."); }
+                if (folkPT2 == 2) { Console.WriteLine("If someone is in trouble, " + charName + " is always ready to lend help."); }
+                if (folkPT2 == 3) { Console.WriteLine("When " + charName + " sets their mind to something, they follow through no matter what gets in their way."); }
+                if (folkPT2 == 4) { Console.WriteLine(charName + " has a strong sense of fairness and always tries to find the equitable solution to arguments."); }
+                if (folkPT2 == 5) { Console.WriteLine(charName + " is confident in their own abilities and tries to instill confidence in others."); }
+                if (folkPT2 == 6) { Console.WriteLine("Thinking is for other people, " + charName + " prefers action."); }
+                if (folkPT2 == 7) { Console.WriteLine(charName + " tries to sound smarter than they are by using big words and fancy idioms, but usually uses them incorrectly."); }
+                if (folkPT2 == 8) { Console.WriteLine(charName + " gets bored easily, they just want to get on with fulfilling their destiny!"); }
+
+                Console.WriteLine("\n**Ideals (Allignment):\n");          //Ideals Folk Hero
+                Random folkIDRoll = new Random();
+                int folkID = folkIDRoll.Next(1, 7);
+                if (folkID == 1) { Console.WriteLine("Respect (Good). All people deserve to be treatd with dignity and respect."); }
+                if (folkID == 2) { Console.WriteLine("Fairness (Lawful). No one should get preferential treatment before the law, and no one is above the law."); }
+                if (folkID == 3) { Console.WriteLine("Freedom (Chaotic). Tyrants must not be allowed to oppress the people."); }
+                if (folkID == 4) { Console.WriteLine("Might (Evil). " + charName + " believes that if they can becomes strong, they'll finally be able to take what they want--and what they deserve."); }
+                if (folkID == 5) { Console.WriteLine("Sincerity (Neutral). Nothing good can come from trying to be something you're not."); }
+                if (folkID == 6) { Console.WriteLine("Destiny (Any). Nothing and no one can steer " + charName + " away from their higher calling."); }
+
+                Console.WriteLine("\n**Bonds:\n");                        //Bonds Folk Hero
+                Random folkBondRoll = new Random();
+                int folkBond = folkBondRoll.Next(1, 7);
+                if (folkBond == 1) { Console.WriteLine(charName + " has a family, but has no idea where they are. One day, " + charName + " hopes to see them again."); }
+                if (folkBond == 2) { Console.WriteLine(charName + " worked the land, loves the land, and they will protect the land."); }
+                if (folkBond == 3) { Console.WriteLine("A proud noble once gave " + charName + " a horrible beating, and they will take their revenge out on any bully they encounter."); }
+                if (folkBond == 4) { Console.WriteLine(charName + " just wishes that their childhood sweatheart had come with them to pursue their destiny."); }
+                if (folkBond == 5) { Console.WriteLine(charName + "'s tools are symbols of their past life, and they carry them so that they will never forget their roots."); }
+                if (folkBond == 6) { Console.WriteLine(charName + " protects those who cannot protect themselves."); }
+
+                Console.WriteLine("\n**Flaws: \n");                       //Flaws Folk Hero
+                Random folkFlawRoll = new Random();
+                int folkFlaw = folkFlawRoll.Next(1, 7);
+                if (folkFlaw == 1) { Console.WriteLine("The tyrant who rules " + charName + "'s land will stop at nothing to see them killed. "); }
+                if (folkFlaw == 2) { Console.WriteLine(charName + " is convinced of the significance of their desinty, and blind to their shortcomings and the risk of failure."); }
+                if (folkFlaw == 3) { Console.WriteLine("The people who knew " + charName + " when they were young know their shameful secret... " + charName + " can never go home again."); }
+                if (folkFlaw == 4) { Console.WriteLine(charName + " has a weakness for the vices of the city... Especially hard drink."); }
+                if (folkFlaw == 5) { Console.WriteLine("Secretly, " + charName + " believes that things would better if *they* were the tyrant lording over the land."); }
+                if (folkFlaw == 6) { Console.WriteLine(charName + " has trouble trusting their allies."); }
+            }
+            if (BackNum == 3)
+            {
+                Random hauntPTRoll = new Random();                        //Personality Traits Haunted One
+                int hauntPT = hauntPTRoll.Next(1, 9);
+                if (hauntPT == 1) { Console.WriteLine(charName + " doesn't run from evil, evil runs from " + charName + ".\n"); }
+                if (hauntPT == 2) { Console.WriteLine(charName + " likes to read and recite poetry. It keeps them calm and brings fleeting moments of happiness.\n"); }
+                if (hauntPT == 3) { Console.WriteLine(charName + " spends money freely and lives life to the fullest--Any day might be their last, after all.\n"); }
+                if (hauntPT == 4) { Console.WriteLine(charName + " lives for the thrill of the hunt.\n"); }
+                if (hauntPT == 5) { Console.WriteLine(charName + " doesn't talk about the thing that torments them. It's better not to burden others with their curse...\n"); }
+                if (hauntPT == 6) { Console.WriteLine(charName + " expects danger around every corner.\n"); }
+                if (hauntPT == 7) { Console.WriteLine(charName + " refuses to become a victim, and will not allow others to be victimized.\n"); }
+                if (hauntPT == 8) { Console.WriteLine(charName + " puts no trust in divine beings.\n"); }
+
+                Random hauntPTRoll2 = new Random();                        //Personality Traits 2 Haunted One
+                int hauntPT2 = hauntPTRoll2.Next(1, 9);
+                if (hauntPT2 == 1) { Console.WriteLine(charName + " doesn't run from evil, evil runs from " + charName + "."); }
+                if (hauntPT2 == 2) { Console.WriteLine(charName + " likes to read and recite poetry. It keeps them calm and brings fleeting moments of happiness."); }
+                if (hauntPT2 == 3) { Console.WriteLine(charName + " spends money freely and lives life to the fullest--Any day might be their last, after all."); }
+                if (hauntPT2 == 4) { Console.WriteLine(charName + " lives for the thrill of the hunt."); }
+                if (hauntPT2 == 5) { Console.WriteLine(charName + " doesn't talk about the thing that torments them. It's better not to burden others with their curse..."); }
+                if (hauntPT2 == 6) { Console.WriteLine(charName + " expects danger around every corner."); }
+                if (hauntPT2 == 7) { Console.WriteLine(charName + " refuses to become a victim, and will not allow others to be victimized."); }
+                if (hauntPT2 == 8) { Console.WriteLine(charName + " puts no trust in divine beings."); }
+
+                Console.WriteLine("\n**Ideals (Allignment):\n");          //Ideals Haunted One
+                Random hauntIDRoll = new Random();
+                int hauntID = hauntIDRoll.Next(1, 7);
+                if (hauntID == 1) { Console.WriteLine("Charity (Good). " + charName + " tries to help those in need, no matter the personal cost."); }
+                if (hauntID == 2) { Console.WriteLine("Resolution (Any). " + charName + " will stop the spirits that haunt them or die trying."); }
+                if (hauntID == 3) { Console.WriteLine("Crusading (Good). " + charName + " kills monsters to make the world a safe place--and to exorcise their own demons..."); }
+                if (hauntID == 4) { Console.WriteLine("Amoral (Chaotic). " + charName + " has a dark calling that puts them above the law."); }
+                if (hauntID == 5) { Console.WriteLine("Calculating (Lawful). One should know the enemy's capabilities and weaknesses before rushing into battle."); }
+                if (hauntID == 6) { Console.WriteLine("Vengeance (Evil). " + charName + " is a monster that destroys other monsters, and anything else that gets in their way."); }
+
+                Console.WriteLine("\n**Bonds:\n");                        //Bonds Haunted One
+                Random hauntBondRoll = new Random();
+                int hauntBond = hauntBondRoll.Next(1, 7);
+                if (hauntBond == 1) { Console.WriteLine(charName + " keeps their thoughts and discoveries in a journal. Their journal is their legacy."); }
+                if (hauntBond == 2) { Console.WriteLine(charName + " would sacrifice their life and soul to protect the innocent."); }
+                if (hauntBond == 3) { Console.WriteLine(charName + "'s torment drove away the person they love. They strive to win back all that they've lost."); }
+                if (hauntBond == 4) { Console.WriteLine("A terrible guilt consumes " + charName + ". They hope that they kind find redemption through their actions."); }
+                if (hauntBond == 5) { Console.WriteLine("There's evil in " + charName + " and they can fell it... They will do anything to make sure that evil is never set free."); }
+                if (hauntBond == 6) { Console.WriteLine(charName + " has a child to protect. They will make the world a safer place for them."); }
+
+                Console.WriteLine("\n**Flaws: \n");                       //Flaws Haunted One
+                Random hauntFlawRoll = new Random();
+                int hauntFlaw = hauntFlawRoll.Next(1, 7);
+                if (hauntFlaw == 1) { Console.WriteLine(charName + " has certain rituals that they follow every day. They must not be broken."); }
+                if (hauntFlaw == 2) { Console.WriteLine(charName + " assumes the worst in people."); }
+                if (hauntFlaw == 3) { Console.WriteLine(charName + " feels no compassion for the dead. They're the lucky ones... "); }
+                if (hauntFlaw == 4) { Console.WriteLine(charName + " has an addiction."); }
+                if (hauntFlaw == 5) { Console.WriteLine(charName + " is a purveyor of doom and gloom who lives in a world devoid of hope."); }
+                if (hauntFlaw == 6) { Console.WriteLine(charName + " talks to spirits which no one else can see."); }
+            }
+            if (BackNum == 4)
+            {
+                Random noblePTRoll = new Random();                        //Personality Traits Noble
+                int noblePT = noblePTRoll.Next(1, 9);
+                if (noblePT == 1) { Console.WriteLine(charName + "'s eloquent flattery makes everyone they talk to feel like the most important person in the world.\n"); }
+                if (noblePT == 2) { Console.WriteLine("The common folk love " + charName + " for their kindness and generosity.\n"); }
+                if (noblePT == 3) { Console.WriteLine("Just by looking at " + charName + "'s regal bearing, one can tell that they are a cut above the unwashed masses.\n"); }
+                if (noblePT == 4) { Console.WriteLine(charName + " takes great pains to always look their best and follow the latest fashions.\n"); }
+                if (noblePT == 5) { Console.WriteLine(charName + " doesn't like to get their hands dirty, and wouldn't be caught dead in unsuitable accommodations.\n"); }
+                if (noblePT == 6) { Console.WriteLine("Despite " + charName + "'s noble birth, they do not place themself above other folk. We all have the same blood, after all.\n"); }
+                if (noblePT == 7) { Console.WriteLine("Once " + charName + " feels insulted, their good graces are lost forever.\n"); }
+                if (noblePT == 8) { Console.WriteLine("Be warned: If you do " + charName + " an inury, they will crush you, ruin your name, and salt your fields.\n"); }
+
+                Random noblePTRoll2 = new Random();                        //Personality Traits 2 Noble
+                int noblePT2 = noblePTRoll2.Next(1, 9);
+                if (noblePT2 == 1) { Console.WriteLine(charName + "'s eloquent flattery makes everyone they talk to feel like the most important person in the world.\n"); }
+                if (noblePT2 == 2) { Console.WriteLine("The common folk love " + charName + " for their kindness and generosity.\n"); }
+                if (noblePT2 == 3) { Console.WriteLine("Just by looking at " + charName + "'s regal bearing, one can tell that they are a cut above the unwashed masses.\n"); }
+                if (noblePT2 == 4) { Console.WriteLine(charName + " takes great pains to always look their best and follow the latest fashions.\n"); }
+                if (noblePT2 == 5) { Console.WriteLine(charName + " doesn't like to get their hands dirty, and wouldn't be caught dead in unsuitable accommodations.\n"); }
+                if (noblePT2 == 6) { Console.WriteLine("Despite " + charName + "'s noble birth, they do not place themself above other folk. We all have the same blood, after all.\n"); }
+                if (noblePT2 == 7) { Console.WriteLine("Once " + charName + " feels insulted, their good graces are lost forever.\n"); }
+                if (noblePT2 == 8) { Console.WriteLine("Be warned: If you do " + charName + " an inury, they will crush you, ruin your name, and salt your fields.\n"); }
+
+
+                Console.WriteLine("\n**Ideals (Allignment):\n");          //Ideals Noble
+                Random nobleIDRoll = new Random();
+                int nobleID = nobleIDRoll.Next(1, 7);
+                if (nobleID == 1) { Console.WriteLine("Respect (Good). Respect is due to " + charName + " because of their rank, but all people regardless of their station deserve to be treated with dignity."); }
+                if (nobleID == 2) { Console.WriteLine("Responsibility (Lawful). It is " + charName + "'s duty to respect the authority of those above me, just as those below them must respect theirs."); }
+                if (nobleID == 3) { Console.WriteLine("Independence (Chaotic). " + charName + " must prove that they can handle themself without the coddling of their family."); }
+                if (nobleID == 4) { Console.WriteLine("Power (Evil). If " + charName + " can attain more power, no one will be able to tell them what to do."); }
+                if (nobleID == 5) { Console.WriteLine("Family (Any). Blood runs thicker than water."); }
+                if (nobleID == 6) { Console.WriteLine("Noble Obligation (Good). " + charName + " sees it as their duty to protect and care for the people beneath them."); }
+
+                Console.WriteLine("\n**Bonds:\n");                        //Bonds Noble
+                Random nobleBondRoll = new Random();
+                int nobleBond = nobleBondRoll.Next(1, 7);
+                if (nobleBond == 1) { Console.WriteLine(charName + " will face any challenge to win the approval of their family."); }
+                if (nobleBond == 2) { Console.WriteLine(charName + "'s house's alliance with another noble family must be sustained at all costs."); }
+                if (nobleBond == 3) { Console.WriteLine("Nothing is more improtant than the other members of " + charName + "'s family."); }
+                if (nobleBond == 4) { Console.WriteLine(charName + " is in love with the heir of a family which their family despises."); }
+                if (nobleBond == 5) { Console.WriteLine(charName + "'s loyalty to their sovereign is unwavering."); }
+                if (nobleBond == 6) { Console.WriteLine("The common folk must see " + charName + " as a hero of the people."); }
+
+                Console.WriteLine("\n**Flaws: \n");                       //Flaws Noble
+                Random nobleFlawRoll = new Random();
+                int nobleFlaw = nobleFlawRoll.Next(1, 7);
+                if (nobleFlaw == 1) { Console.WriteLine(charName + " secretly believes that everyone is beneath them."); }
+                if (nobleFlaw == 2) { Console.WriteLine(charName + " hides a truly scandalous secret which could ruin their family forever if exposed."); }
+                if (nobleFlaw == 3) { Console.WriteLine(charName + " thinks that people are leveling veiled insults and threats at them, and is quick to anger or take offense."); }
+                if (nobleFlaw == 4) { Console.WriteLine(charName + " has an insatiable desire for carnal pleasures."); }
+                if (nobleFlaw == 5) { Console.WriteLine("In fact, the world *does* revolve around " + charName + "."); }
+                if (nobleFlaw == 6) { Console.WriteLine("By their words and actions, " + charName + " often brings shame upon their family."); }
+            }
+            if (BackNum == 5) 
+            {
+                Random soldPTRoll = new Random();                        //Personality Traits Soldier
+                int soldPT = soldPTRoll.Next(1, 9);
+                if (soldPT == 1) { Console.WriteLine(charName + " is always polite and respectful.\n"); }
+                if (soldPT == 2) { Console.WriteLine(charName + " remains haunted by memories of war, unable to get the images of carnage out of their mind.\n"); }
+                if (soldPT == 3) { Console.WriteLine("Having lost so many friends to war, " + charName + " is slow to make new ones.\n"); }
+                if (soldPT == 4) { Console.WriteLine(charName + " is full of inspiring and cautionary tales from their military experience relevant to almost every combat situation.\n"); }
+                if (soldPT == 5) { Console.WriteLine(charName + " can stare down a hellhound and not even so much as flinch.\n"); }
+                if (soldPT == 6) { Console.WriteLine("Quite simply, " + charName + " just enjoys being strong and breaking things.\n"); }
+                if (soldPT == 7) { Console.WriteLine("Life in the barracks has left "+charName + " with a crude sense of humor.\n"); }
+                if (soldPT == 8) { Console.WriteLine( charName + " faces problems head on. A simple, direct solution is the best path to success.\n"); }
+               
+                Random soldPTRoll2 = new Random();                        //Personality Traits 2 Soldier
+                int soldPT2 = soldPTRoll2.Next(1, 9);
+                if (soldPT2 == 1) { Console.WriteLine(charName + " is always polite and respectful.\n"); }
+                if (soldPT2 == 2) { Console.WriteLine(charName + " remains haunted by memories of war, unable to get the images of carnage out of their mind.\n"); }
+                if (soldPT2 == 3) { Console.WriteLine("Having lost so many friends to war, " + charName + " is slow to make new ones.\n"); }
+                if (soldPT2 == 4) { Console.WriteLine(charName + " is full of inspiring and cautionary tales from their military experience relevant to almost every combat situation.\n"); }
+                if (soldPT2 == 5) { Console.WriteLine(charName + " can stare down a hellhound and not even so much as flinch.\n"); }
+                if (soldPT2 == 6) { Console.WriteLine("Quite simply, " + charName + " just enjoys being strong and breaking things.\n"); }
+                if (soldPT2 == 7) { Console.WriteLine("Life in the barracks has left " + charName + " with a crude sense of humor.\n"); }
+                if (soldPT2 == 8) { Console.WriteLine(charName + " faces problems head on. A simple, direct solution is the best path to success.\n"); }
+
+
+                Console.WriteLine("\n**Ideals (Allignment):\n");          //Ideals Soldier
+                Random soldIDRoll = new Random();
+                int soldID = soldIDRoll.Next(1, 7);
+                if (soldID == 1) { Console.WriteLine("Greater Good (Good). The lot of an honorable soldier is to lay down their life in defense of others."); }
+                if (soldID == 2) { Console.WriteLine("Responsibility (Lawful). " + charName + " does what they must and obeys just authority. What is an army without a well established chain of command?"); }
+                if (soldID == 3) { Console.WriteLine("Independence (Chaotic). When people blindly follow orders, they're embracing tyranny."); }
+                if (soldID == 4) { Console.WriteLine("Might (Evil). In life as in war, the stronger force wins."); }
+                if (soldID == 5) { Console.WriteLine("Live and Let Live (Neutral). Ideals aren't worth killing or dying for."); }
+                if (soldID == 6) { Console.WriteLine("Nationalist (Any). "+charName + "'s city, nation, people. That is all that matters."); }
+
+                Console.WriteLine("\n**Bonds:\n");                        //Bonds Soldier
+                Random soldBondRoll = new Random();
+                int soldBond = soldBondRoll.Next(1, 7);
+                if (soldBond == 1) { Console.WriteLine(charName + " will still lay down their life for the people they served with."); }
+                if (soldBond == 2) { Console.WriteLine("Someone saved "+charName + "'s life on the battlefield. To this day, they will never leave a friend behind."); }
+                if (soldBond == 3) { Console.WriteLine(charName + "'s honor is their life."); }
+                if (soldBond == 4) { Console.WriteLine(charName + " will never forget the crushing defeat their company suffered... Or the enemies who dealt it."); }
+                if (soldBond == 5) { Console.WriteLine("Those who fight beside "+charName + " are those worth dying for."); }
+                if (soldBond == 6) { Console.WriteLine(charName + " fights for those who cannot fight for themselves."); }
+
+                Console.WriteLine("\n**Flaws: \n");                       //Flaws Soldier
+                Random soldFlawRoll = new Random();
+                int soldFlaw = soldFlawRoll.Next(1, 7);
+                if (soldFlaw == 1) { Console.WriteLine("The monstrous enemy that "+charName + " once faced in battle still leaves them quivering with fear."); }
+                if (soldFlaw == 2) { Console.WriteLine(charName + " has little respect for those who are not proven warriors."); }
+                if (soldFlaw == 3) { Console.WriteLine(charName + " made a terrible mistake in battle which cost many lives. They would do anything to keep that mistake a secret."); }
+                if (soldFlaw == 4) { Console.WriteLine(charName + "'s hatred of their enemies is blind and unreasoning."); }
+                if (soldFlaw == 5) { Console.WriteLine(charName + " obey's the law, even if the law causes misery."); }
+                if (soldFlaw == 6) { Console.WriteLine(charName + " would sooner eat their own boot than admit when they were wrong."); }
+            }
+            if (BackNum == 6) 
+            {
+                Random sagePTRoll = new Random();                        //Personality Traits Sage
+                int sagePT = sagePTRoll.Next(1, 9);
+                if (sagePT == 1) { Console.WriteLine(charName + " habitually pontificates with the usage of multisyllabic words in order to convery the impression of their great erudition.\n"); }
+                if (sagePT == 2) { Console.WriteLine(charName + " has read every book in the world's greatest libraries... Or at least they claim to have.\n"); }
+                if (sagePT == 3) { Console.WriteLine("Intelligent and spry, " + charName + " is used to helping out those who aren't as smart as them, and patiently explaining things to others.\n"); }
+                if (sagePT == 4) { Console.WriteLine("There's nothing "+charName + " loves more than a good mystery.\n"); }
+                if (sagePT == 5) { Console.WriteLine(charName + " is willing to listen to every side of an argument before forming an opinion.\n"); }
+                if (sagePT == 6) { Console.WriteLine(charName+"..... talks..... slowly..... to...... idiots. What is intellect without a little condescension?\n"); }
+                if (sagePT == 7) { Console.WriteLine("Mostly a hermit, " + charName + " is horribly, dreadfully awkward in social situations.\n"); }
+                if (sagePT == 8) { Console.WriteLine(charName + " is convinced that people are always trying to steal their secrets.\n"); }
+
+                Random sagePTRoll2 = new Random();                        //Personality Traits Sage
+                int sagePT2 = sagePTRoll2.Next(1, 9);
+                if (sagePT2 == 1) { Console.WriteLine(charName + " habitually pontificates with the usage of multisyllabic words in order to convery the impression of their great erudition.\n"); }
+                if (sagePT2 == 2) { Console.WriteLine(charName + " has read every book in the world's greatest libraries... Or at least they claim to have.\n"); }
+                if (sagePT2 == 3) { Console.WriteLine("Intelligent and spry, " + charName + " is used to helping out those who aren't as smart as them, and patiently explaining things to others.\n"); }
+                if (sagePT2 == 4) { Console.WriteLine("There's nothing " + charName + " loves more than a good mystery.\n"); }
+                if (sagePT2 == 5) { Console.WriteLine(charName + " is willing to listen to every side of an argument before forming an opinion.\n"); }
+                if (sagePT2 == 6) { Console.WriteLine(charName + "..... talks..... slowly..... to...... idiots. What is intellect without a little condescension?\n"); }
+                if (sagePT2 == 7) { Console.WriteLine("Mostly a hermit, " + charName + " is horribly, dreadfully awkward in social situations.\n"); }
+                if (sagePT2 == 8) { Console.WriteLine(charName + " is convinced that people are always trying to steal their secrets.\n"); }
+
+
+                Console.WriteLine("\n**Ideals (Allignment):\n");          //Ideals Sage
+                Random sageIDRoll = new Random();
+                int sageID = sageIDRoll.Next(1, 7);
+                if (sageID == 1) { Console.WriteLine("Knowledge (Neutral). The path to power and self-improvement is through knowledge."); }
+                if (sageID == 2) { Console.WriteLine("Beauty (Good). What is beauty points us beyond itself toward that which is true."); }
+                if (sageID == 3) { Console.WriteLine("Logic (Lawful). Emotions must not cloud our logical thinking."); }
+                if (sageID == 4) { Console.WriteLine("No Limits (Chaotic). Nothing should fetter the infinite possibilities inherent within all existence!"); }
+                if (sageID == 5) { Console.WriteLine("Power (Evil). Knowledge is the path to power and domination."); }
+                if (sageID == 6) { Console.WriteLine("Self-Imporvement (Any). The goal of a life of study is the betterment of oneself."); }
+
+                Console.WriteLine("\n**Bonds:\n");                        //Bonds Sage
+                Random sageBondRoll = new Random();
+                int sageBond = sageBondRoll.Next(1, 7);
+                if (sageBond == 1) { Console.WriteLine(charName + " feels that it is a teacher's duty to protect their students."); }
+                if (sageBond == 2) { Console.WriteLine(charName + " possesses an ancient text which holds terrible secrets--It must not fall into the wrong hands."); }
+                if (sageBond == 3) { Console.WriteLine(charName + "'s lifes work is the preservation of their prefferred library, university, temple, etc"); }
+                if (sageBond == 4) { Console.WriteLine(charName + "'s lifes work is a series of tomes related to a specific field of lore."); }
+                if (sageBond == 5) { Console.WriteLine(charName + " has been searching their whole life for the answer to a certain question..."); }
+                if (sageBond == 6) { Console.WriteLine(charName + " sold their soul for knowledge. They hope to use that knowledge to do great deeds--and maybe even win their soul back."); }
+
+                Console.WriteLine("\n**Flaws: \n");                       //Flaws Sage
+                Random sageFlawRoll = new Random();
+                int sageFlaw = sageFlawRoll.Next(1, 7);
+                if (sageFlaw == 1) { Console.WriteLine(charName + " is easily distracted by the promise of information."); }
+                if (sageFlaw == 2) { Console.WriteLine("Most people scream and run when they see a demon. "+charName + " stops and takes notes on its anatomy."); }
+                if (sageFlaw == 3) { Console.WriteLine("Unlocking an ancient mystery is worth the price of a civilization."); }
+                if (sageFlaw == 4) { Console.WriteLine(charName + " overlooks obvious solutions in favor of the complicated ones."); }
+                if (sageFlaw == 5) { Console.WriteLine(charName + " often speaks without thinking through their words, invariably insulting others."); }
+                if (sageFlaw == 6) { Console.WriteLine(charName + " can't keep a secret to save their life... Or anyone else's"); }
+            }
+
+            
+             Console.WriteLine(  "\n\n~`~ ~ ~`~ ~ ~`~ ~ ~ ~`~ ~ ~ ~ ~`~ ~ ~`~ ~ ~ ~`~ ~ ~`~ ~ ~ ~`~ ~`~ ~ ~ ~`~ ~ ~`~ ~ ~`");
+              Console.WriteLine("| **Don't forget to screenshot this window to save your character's information!** |");
+              Console.WriteLine("~`~ ~ ~`~ ~ ~`~ ~ ~ ~`~ ~ ~ ~ ~`~ ~ ~`~ ~ ~ ~`~ ~ ~`~ ~ ~ ~`~ ~`~ ~ ~ ~`~ ~ ~`~ ~ ~`");
+
+            Console.ReadLine();
+            
+        }
+    }
+}    
+
